@@ -1,0 +1,13 @@
+# Synthesis and FPGA build outputs
+*.vvp
+*.json
+*.bin
+*.bit
+*.fs
+*.rpt
+*.log
+
+# Editor and OS temporary files
+.vscode/
+.DS_Store
+Thumbs.db

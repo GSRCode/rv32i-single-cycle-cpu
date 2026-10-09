@@ -13,9 +13,10 @@ module instruction_memory (
             memory[i] = 32'h00000000;
 
         // Same instructions as Logisim
-        memory[0] = 32'h20050093;
-        memory[1] = 32'h00A00113;
+        memory[0] = 32'h00A00093; 
+        memory[1] = 32'h01400113;
         memory[2] = 32'h002081B3;
+
     end
 
     // Asynchronous instruction read

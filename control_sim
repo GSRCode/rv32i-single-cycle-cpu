@@ -1,0 +1,89 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x64bc190273d0 .scope module, "control_tb" "control_tb" 2 4;
+ .timescale -9 -12;
+v0x64bc1904e950_0 .var "funct3", 2 0;
+v0x64bc1904ea30_0 .var "funct7", 6 0;
+v0x64bc1904eb00_0 .var "opcode", 6 0;
+L_0x7db291bb70f0 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x64bc1904ec00_0 .net "operation", 1 0, L_0x7db291bb70f0;  1 drivers
+v0x64bc1904ecd0_0 .net "reg_write", 0 0, L_0x64bc1904f2a0;  1 drivers
+S_0x64bc19036760 .scope module, "uut" "control" 2 13, 3 2 0, S_0x64bc190273d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 7 "opcode";
+    .port_info 1 /INPUT 3 "funct3";
+    .port_info 2 /INPUT 7 "funct7";
+    .port_info 3 /OUTPUT 1 "reg_write";
+    .port_info 4 /OUTPUT 2 "operation";
+L_0x64bc1904f050 .functor AND 1, L_0x64bc1904eda0, L_0x64bc1904ef10, C4<1>, C4<1>;
+L_0x64bc1904f2a0 .functor AND 1, L_0x64bc1904f050, L_0x64bc1904f160, C4<1>, C4<1>;
+L_0x7db291bb7018 .functor BUFT 1, C4<0110011>, C4<0>, C4<0>, C4<0>;
+v0x64bc19036940_0 .net/2u *"_ivl_0", 6 0, L_0x7db291bb7018;  1 drivers
+L_0x7db291bb70a8 .functor BUFT 1, C4<0000000>, C4<0>, C4<0>, C4<0>;
+v0x64bc1904df80_0 .net/2u *"_ivl_10", 6 0, L_0x7db291bb70a8;  1 drivers
+v0x64bc1904e060_0 .net *"_ivl_12", 0 0, L_0x64bc1904f160;  1 drivers
+v0x64bc1904e100_0 .net *"_ivl_2", 0 0, L_0x64bc1904eda0;  1 drivers
+L_0x7db291bb7060 .functor BUFT 1, C4<000>, C4<0>, C4<0>, C4<0>;
+v0x64bc1904e1c0_0 .net/2u *"_ivl_4", 2 0, L_0x7db291bb7060;  1 drivers
+v0x64bc1904e2f0_0 .net *"_ivl_6", 0 0, L_0x64bc1904ef10;  1 drivers
+v0x64bc1904e3b0_0 .net *"_ivl_9", 0 0, L_0x64bc1904f050;  1 drivers
+v0x64bc1904e470_0 .net "funct3", 2 0, v0x64bc1904e950_0;  1 drivers
+v0x64bc1904e550_0 .net "funct7", 6 0, v0x64bc1904ea30_0;  1 drivers
+v0x64bc1904e630_0 .net "opcode", 6 0, v0x64bc1904eb00_0;  1 drivers
+v0x64bc1904e710_0 .net "operation", 1 0, L_0x7db291bb70f0;  alias, 1 drivers
+v0x64bc1904e7f0_0 .net "reg_write", 0 0, L_0x64bc1904f2a0;  alias, 1 drivers
+L_0x64bc1904eda0 .cmp/eq 7, v0x64bc1904eb00_0, L_0x7db291bb7018;
+L_0x64bc1904ef10 .cmp/eq 3, v0x64bc1904e950_0, L_0x7db291bb7060;
+L_0x64bc1904f160 .cmp/eq 7, v0x64bc1904ea30_0, L_0x7db291bb70a8;
+    .scope S_0x64bc190273d0;
+T_0 ;
+    %vpi_call 2 22 "$dumpfile", "control.vcd" {0 0 0};
+    %vpi_call 2 23 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x64bc190273d0 {0 0 0};
+    %pushi/vec4 51, 0, 7;
+    %store/vec4 v0x64bc1904eb00_0, 0, 7;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x64bc1904e950_0, 0, 3;
+    %pushi/vec4 0, 0, 7;
+    %store/vec4 v0x64bc1904ea30_0, 0, 7;
+    %delay 10000, 0;
+    %vpi_call 2 31 "$display", "ADD: reg_write = %b, operation = %b", v0x64bc1904ecd0_0, v0x64bc1904ec00_0 {0 0 0};
+    %pushi/vec4 51, 0, 7;
+    %store/vec4 v0x64bc1904eb00_0, 0, 7;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x64bc1904e950_0, 0, 3;
+    %pushi/vec4 32, 0, 7;
+    %store/vec4 v0x64bc1904ea30_0, 0, 7;
+    %delay 10000, 0;
+    %vpi_call 2 40 "$display", "SUB: reg_write = %b, operation = %b", v0x64bc1904ecd0_0, v0x64bc1904ec00_0 {0 0 0};
+    %pushi/vec4 0, 0, 7;
+    %store/vec4 v0x64bc1904eb00_0, 0, 7;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x64bc1904e950_0, 0, 3;
+    %pushi/vec4 0, 0, 7;
+    %store/vec4 v0x64bc1904ea30_0, 0, 7;
+    %delay 10000, 0;
+    %vpi_call 2 49 "$display", "Invalid opcode: reg_write = %b, operation = %b", v0x64bc1904ecd0_0, v0x64bc1904ec00_0 {0 0 0};
+    %pushi/vec4 51, 0, 7;
+    %store/vec4 v0x64bc1904eb00_0, 0, 7;
+    %pushi/vec4 7, 0, 3;
+    %store/vec4 v0x64bc1904e950_0, 0, 3;
+    %pushi/vec4 0, 0, 7;
+    %store/vec4 v0x64bc1904ea30_0, 0, 7;
+    %delay 10000, 0;
+    %vpi_call 2 58 "$display", "Invalid funct3: reg_write = %b, operation = %b", v0x64bc1904ecd0_0, v0x64bc1904ec00_0 {0 0 0};
+    %vpi_call 2 61 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "control_tb.v";
+    "control.v";

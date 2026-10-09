@@ -1,0 +1,54 @@
+$date
+	Fri Oct  9 11:24:54 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module control_tb $end
+$var wire 2 ! operation [1:0] $end
+$var wire 1 " reg_write $end
+$var reg 3 # funct3 [2:0] $end
+$var reg 7 $ funct7 [6:0] $end
+$var reg 7 % opcode [6:0] $end
+$scope module uut $end
+$var wire 3 & funct3 [2:0] $end
+$var wire 7 ' funct7 [6:0] $end
+$var wire 7 ( opcode [6:0] $end
+$var wire 2 ) operation [1:0] $end
+$var wire 1 " reg_write $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 )
+b110011 (
+b0 '
+b0 &
+b110011 %
+b0 $
+b0 #
+1"
+b0 !
+$end
+#10000
+0"
+b100000 $
+b100000 '
+#20000
+b0 $
+b0 '
+b0 %
+b0 (
+#30000
+b111 #
+b111 &
+b110011 %
+b110011 (
+#40000

@@ -25,12 +25,16 @@ module cpu (
     // ALU
     wire [31:0] alu_operand_b;
     wire [31:0] alu_result;
+    wire [31:0] memory_read_data;
+    wire [31:0] writeback_data;
     wire zero;
 
     // Control
     wire reg_write;
     wire [1:0] operation;
     wire alu_src;
+    wire mem_to_reg;
+    wire mem_write;
 
     // Instruction Fetch
     instruction_fetch ifetch (
@@ -49,7 +53,9 @@ module cpu (
     assign funct7    = instruction[31:25];
 
     // Extract and sign-extend immediate
-    assign immediate = instruction[31:20];
+    assign immediate = (opcode == 7'h23)
+                     ? {instruction[31:25], instruction[11:7]}
+                     : instruction[31:20];
 
     assign immediate_extended = {{20{immediate[11]}}, immediate};
 
@@ -60,7 +66,9 @@ module cpu (
         .funct7(funct7),
         .reg_write(reg_write),
         .operation(operation),
-        .alu_src(alu_src)
+        .alu_src(alu_src),
+        .mem_to_reg(mem_to_reg),
+        .mem_write(mem_write)
     );
 
     // Register File
@@ -69,7 +77,7 @@ module cpu (
         .rs1(rs1),
         .rs2(rs2),
         .rd(rd),
-        .write_data(alu_result),
+        .write_data(writeback_data),
         .reg_write(reg_write),
         .read_data1(read_data_1),
         .read_data2(read_data_2)
@@ -86,5 +94,16 @@ module cpu (
         .result(alu_result),
         .zero(zero)
     );
+
+    data_memory dmem (
+        .clk(clk),
+        .address(alu_result),
+        .write_data(read_data_2),
+        .mem_write(mem_write),
+        .read_data(memory_read_data)
+    );
+
+    assign writeback_data =
+        mem_to_reg ? memory_read_data : alu_result;
 
 endmodule

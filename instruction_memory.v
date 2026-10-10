@@ -12,10 +12,10 @@ module instruction_memory (
         for (i = 0; i < 256; i = i + 1)
             memory[i] = 32'h00000000;
 
-        // Same instructions as Logisim
-        memory[0] = 32'h00A00093; 
-        memory[1] = 32'h01400113;
-        memory[2] = 32'h002081B3;
+        // ADDI x1, x0, 40; SW x1, 8(x0); LW x2, 8(x0)
+        memory[0] = 32'h02800093;
+        memory[1] = 32'h00102423;
+        memory[2] = 32'h00802103;
 
     end
 

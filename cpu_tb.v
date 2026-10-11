@@ -1,57 +1,71 @@
 `timescale 1ns/1ps
-
 module cpu_tb;
-    reg clk;
-    reg reset;
+    reg clk = 0;
+    reg reset = 0;
+    integer errors = 0;
+    cpu dut (.clk(clk), .reset(reset));
 
-    cpu uut (
-        .clk(clk),
-        .reset(reset)
-    );
+    task pulse;
+        begin
+            #5 clk = 1;
+            #5 clk = 0;
+        end
+    endtask
 
-    always #5 clk = ~clk;
+    task check_pc;
+        input [31:0] expected;
+        begin
+            #1;
+            if (dut.pc !== expected) begin
+                $display("FAIL: PC expected %08h got %08h", expected, dut.pc);
+                errors = errors + 1;
+            end else $display("PASS: PC = %08h", dut.pc);
+        end
+    endtask
+
+    task check_reg;
+        input [4:0] number;
+        input [31:0] expected;
+        begin
+            #1;
+            if (dut.regs.registers[number] !== expected) begin
+                $display("FAIL: x%0d expected %08h got %08h", number, expected, dut.regs.registers[number]);
+                errors = errors + 1;
+            end else $display("PASS: x%0d = %08h", number, expected);
+        end
+    endtask
+
+    task do_reset;
+        begin
+            reset = 0;
+            #2 reset = 1;
+            #2 reset = 0;
+        end
+    endtask
 
     initial begin
-        $dumpfile("cpu.vcd");
-        $dumpvars(0, cpu_tb);
+        // BEQ taken program already in instruction_memory.v
+        $display("--- BEQ taken ---");
+        do_reset();
+        check_pc(0);
+        pulse(); check_pc(4);
+        pulse(); check_pc(8);
+        pulse(); check_pc(16);
+        pulse(); check_pc(20);
+        check_reg(3, 42);
 
-        clk = 0;
-        reset = 1;
-        #2;
-        reset = 0;
+        // Load the LUI program without changing instruction_memory.v
+        $display("--- LUI followed by ADDI ---");
+        dut.ifetch.imem.memory[0] = 32'h123451b7;
+        dut.ifetch.imem.memory[1] = 32'h00700213;
+        dut.ifetch.imem.memory[2] = 32'h00000000;
+        do_reset();
+        check_pc(0);
+        pulse(); check_pc(4); check_reg(3, 32'h12345000);
+        pulse(); check_pc(8); check_reg(4, 7);
 
-        @(posedge clk);
-        #1;
-        $display("Clock 1: PC=%h x1=%h", uut.pc, uut.regs.registers[1]);
-        if (uut.pc !== 32'd4 || uut.regs.registers[1] !== 32'd10)
-            $display("FAIL: ADDI x1");
-        else
-            $display("PASS: ADDI x1");
-
-        @(posedge clk);
-        #1;
-        $display("Clock 2: PC=%h x2=%h", uut.pc, uut.regs.registers[2]);
-        if (uut.pc !== 32'd8 || uut.regs.registers[2] !== 32'd20)
-            $display("FAIL: ADDI x2");
-        else
-            $display("PASS: ADDI x2");
-
-        @(posedge clk);
-        #1;
-        $display("Clock 3: PC=%h x3=%h", uut.pc, uut.regs.registers[3]);
-        if (uut.pc !== 32'd12 || uut.regs.registers[3] !== 32'd30)
-            $display("FAIL: ADD x3");
-        else
-            $display("PASS: ADD x3");
-
-        @(posedge clk);
-        #1;
-        $display("Clock 4: PC=%h x4=%h", uut.pc, uut.regs.registers[4]);
-        if (uut.pc !== 32'd16 || uut.regs.registers[4] !== 32'd30)
-            $display("FAIL: LW x4");
-        else
-            $display("PASS: LW x4");
-
+        if (errors == 0) $display("ALL BEQ AND LUI TESTS PASSED");
+        else $display("TESTS FAILED: %0d errors", errors);
         $finish;
     end
 endmodule

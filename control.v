@@ -7,6 +7,8 @@ module control (
     output reg  [1:0] operation,
     output reg        alu_src,
     output reg        mem_to_reg,
+    output reg        branch,
+    output reg        lui,
     output reg        mem_write
 );
 
@@ -17,6 +19,8 @@ module control (
         alu_src   = 1'b0;
         mem_to_reg = 1'b0;
         mem_write = 1'b0;
+        branch = 1'b0;
+        lui = 1'b0;
 
         // ADD
         if (opcode == 7'h33 &&
@@ -51,6 +55,15 @@ module control (
             operation = 2'b00;
             alu_src = 1'b1;
             mem_write = 1'b1;
+        end
+        // LUI
+        else if (opcode == 7'h37) begin
+            reg_write = 1'b1;
+            lui = 1'b1;
+        end
+        // BEQ
+        else if (opcode == 7'h63 && funct3 == 3'b000) begin
+            branch = 1'b1;
         end
     end
 

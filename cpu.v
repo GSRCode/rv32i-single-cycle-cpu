@@ -17,6 +17,9 @@ module cpu (
     // Immediate
     wire [11:0] immediate;
     wire [31:0] immediate_extended;
+    wire [12:0] branch_immediate;
+    wire [31:0] branch_offset;
+    wire pc_src;
 
     // Register file
     wire [31:0] read_data_1;
@@ -35,11 +38,16 @@ module cpu (
     wire alu_src;
     wire mem_to_reg;
     wire mem_write;
+    wire branch;
+    wire lui;
+    wire [31:0] lui_value;
 
     // Instruction Fetch
     instruction_fetch ifetch (
         .clk(clk),
         .reset(reset),
+        .pc_src(pc_src),
+        .branch_offset(branch_offset),
         .pc(pc),
         .instruction(instruction)
     );
@@ -59,6 +67,12 @@ module cpu (
 
     assign immediate_extended = {{20{immediate[11]}}, immediate};
 
+    // B-type immediate: sign | bit 11 | bits 10:5 | bits 4:1 | zero
+    assign branch_immediate = {instruction[31], instruction[7],
+                               instruction[30:25], instruction[11:8], 1'b0};
+    assign branch_offset = {{19{branch_immediate[12]}}, branch_immediate};
+    assign pc_src = branch && (read_data_1 == read_data_2);
+
     // Control Unit
     control ctrl (
         .opcode(opcode),
@@ -68,7 +82,9 @@ module cpu (
         .operation(operation),
         .alu_src(alu_src),
         .mem_to_reg(mem_to_reg),
-        .mem_write(mem_write)
+        .mem_write(mem_write),
+        .branch(branch),
+        .lui(lui)
     );
 
     // Register File
@@ -103,7 +119,9 @@ module cpu (
         .read_data(memory_read_data)
     );
 
-    assign writeback_data =
-        mem_to_reg ? memory_read_data : alu_result;
+    assign lui_value = {instruction[31:12], 12'b0};
+
+    assign writeback_data = lui ? lui_value :
+                            (mem_to_reg ? memory_read_data : alu_result);
 
 endmodule

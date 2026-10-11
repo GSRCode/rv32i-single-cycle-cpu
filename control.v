@@ -9,6 +9,7 @@ module control (
     output reg        mem_to_reg,
     output reg        branch,
     output reg        lui,
+    output reg        jal,
     output reg        mem_write
 );
 
@@ -21,6 +22,7 @@ module control (
         mem_write = 1'b0;
         branch = 1'b0;
         lui = 1'b0;
+        jal = 1'b0;
 
         // ADD
         if (opcode == 7'h33 &&
@@ -60,6 +62,11 @@ module control (
         else if (opcode == 7'h37) begin
             reg_write = 1'b1;
             lui = 1'b1;
+        end
+        // JAL
+        else if (opcode == 7'h6f) begin
+            reg_write = 1'b1;
+            jal = 1'b1;
         end
         // BEQ
         else if (opcode == 7'h63 && funct3 == 3'b000) begin

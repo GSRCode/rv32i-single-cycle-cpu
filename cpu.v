@@ -20,6 +20,9 @@ module cpu (
     wire [12:0] branch_immediate;
     wire [31:0] branch_offset;
     wire pc_src;
+    wire [20:0] jal_immediate;
+    wire [31:0] jal_offset;
+    wire [31:0] pc_offset;
 
     // Register file
     wire [31:0] read_data_1;
@@ -40,6 +43,7 @@ module cpu (
     wire mem_write;
     wire branch;
     wire lui;
+    wire jal;
     wire [31:0] lui_value;
 
     // Instruction Fetch
@@ -47,7 +51,7 @@ module cpu (
         .clk(clk),
         .reset(reset),
         .pc_src(pc_src),
-        .branch_offset(branch_offset),
+        .branch_offset(pc_offset),
         .pc(pc),
         .instruction(instruction)
     );
@@ -71,7 +75,11 @@ module cpu (
     assign branch_immediate = {instruction[31], instruction[7],
                                instruction[30:25], instruction[11:8], 1'b0};
     assign branch_offset = {{19{branch_immediate[12]}}, branch_immediate};
-    assign pc_src = branch && (read_data_1 == read_data_2);
+    assign jal_immediate = {instruction[31], instruction[19:12],
+                            instruction[20], instruction[30:21], 1'b0};
+    assign jal_offset = {{11{jal_immediate[20]}}, jal_immediate};
+    assign pc_offset = jal ? jal_offset : branch_offset;
+    assign pc_src = jal || (branch && (read_data_1 == read_data_2));
 
     // Control Unit
     control ctrl (
@@ -84,7 +92,8 @@ module cpu (
         .mem_to_reg(mem_to_reg),
         .mem_write(mem_write),
         .branch(branch),
-        .lui(lui)
+        .lui(lui),
+        .jal(jal)
     );
 
     // Register File
@@ -121,7 +130,8 @@ module cpu (
 
     assign lui_value = {instruction[31:12], 12'b0};
 
-    assign writeback_data = lui ? lui_value :
+    assign writeback_data = jal ? (pc + 32'd4) :
+                            lui ? lui_value :
                             (mem_to_reg ? memory_read_data : alu_result);
 
 endmodule

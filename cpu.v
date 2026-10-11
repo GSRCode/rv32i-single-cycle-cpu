@@ -44,6 +44,8 @@ module cpu (
     wire branch;
     wire lui;
     wire jal;
+    wire jalr;
+    wire [31:0] jalr_target;
     wire [31:0] lui_value;
 
     // Instruction Fetch
@@ -51,6 +53,8 @@ module cpu (
         .clk(clk),
         .reset(reset),
         .pc_src(pc_src),
+        .jalr(jalr),
+        .jalr_target(jalr_target),
         .branch_offset(pc_offset),
         .pc(pc),
         .instruction(instruction)
@@ -93,7 +97,8 @@ module cpu (
         .mem_write(mem_write),
         .branch(branch),
         .lui(lui),
-        .jal(jal)
+        .jal(jal),
+        .jalr(jalr)
     );
 
     // Register File
@@ -128,9 +133,11 @@ module cpu (
         .read_data(memory_read_data)
     );
 
+    assign jalr_target = alu_result & 32'hFFFFFFFE;
+
     assign lui_value = {instruction[31:12], 12'b0};
 
-    assign writeback_data = jal ? (pc + 32'd4) :
+    assign writeback_data = (jal || jalr) ? (pc + 32'd4) :
                             lui ? lui_value :
                             (mem_to_reg ? memory_read_data : alu_result);
 

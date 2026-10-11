@@ -10,6 +10,7 @@ module control (
     output reg        branch,
     output reg        lui,
     output reg        jal,
+    output reg        jalr,
     output reg        mem_write
 );
 
@@ -23,6 +24,7 @@ module control (
         branch = 1'b0;
         lui = 1'b0;
         jal = 1'b0;
+        jalr = 1'b0;
 
         // ADD
         if (opcode == 7'h33 &&
@@ -67,6 +69,13 @@ module control (
         else if (opcode == 7'h6f) begin
             reg_write = 1'b1;
             jal = 1'b1;
+        end
+        // JALR
+        else if (opcode == 7'h67 && funct3 == 3'b000) begin
+            reg_write = 1'b1;
+            alu_src = 1'b1;
+            operation = 2'b00;
+            jalr = 1'b1;
         end
         // BEQ
         else if (opcode == 7'h63 && funct3 == 3'b000) begin

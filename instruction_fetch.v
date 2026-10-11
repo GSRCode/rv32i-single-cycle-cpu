@@ -2,6 +2,8 @@ module instruction_fetch (
     input wire clk,
     input wire reset,
     input wire pc_src,
+    input wire jalr,
+    input wire [31:0] jalr_target,
     input wire [31:0] branch_offset,
     output wire [31:0] pc,
     output wire [31:0] instruction
@@ -14,7 +16,8 @@ module instruction_fetch (
         if (reset)
             pc_reg <= 32'h00000000;
         else
-            pc_reg <= pc_src ? (pc_reg + branch_offset) : (pc_reg + 32'd4);
+            pc_reg <= jalr ? jalr_target :
+                      pc_src ? (pc_reg + branch_offset) : (pc_reg + 32'd4);
     end
 
     assign pc = pc_reg;

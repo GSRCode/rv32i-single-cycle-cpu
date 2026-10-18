@@ -1,12 +1,32 @@
+
 `timescale 1ns/1ps
 
-module Memory # (parameter WORDS = 256) (input clock,
-input mem_valid,
-mem_store, input [31: 0] mem_addr,
-store_value, output [31: 0] load_value);
-reg [31: 0] dmem[0: WORDS - 1];
-integer i;
-initial for (i = 0; i < WORDS; i = i + 1) dmem[i] = 0;
-assign load_value = (mem_addr[31 : 2] < WORDS) ? dmem[mem_addr[31 : 2]] : 32'b0;
-always @ (posedge clock) if (mem_valid && mem_store && mem_addr[31: 2] < WORDS) dmem[mem_addr[31: 2]] <= store_value;
+module Memory (
+    input  wire        clock,
+    input  wire        mem_write,
+    input  wire        mem_read,
+    input  wire [31:0] address,
+    input  wire [31:0] write_data,
+
+    output wire [31:0] read_data
+);
+
+    // Logisim RAM: 256 words, each 32 bits wide
+    reg [31:0] DataRam1 [0:255];
+
+    // Address splitter: bits 9 through 2
+    wire [7:0] ram_address;
+    assign ram_address = address[9:2];
+
+    // Synchronous write
+    always @(posedge clock) begin
+        if (mem_write)
+            DataRam1[ram_address] <= write_data;
+    end
+
+    // Asynchronous read with output enable
+    assign read_data = mem_read
+                     ? DataRam1[ram_address]
+                     : 32'bz;
+
 endmodule

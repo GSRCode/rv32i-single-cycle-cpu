@@ -2,7 +2,10 @@
 module cpu (
     input  wire clock,
     input  wire reset,
-    output wire stall
+    output wire stall,
+    output wire [7:0] debug_pc,
+    output wire [7:0] debug_wb_data,
+    output wire [4:0] debug_wb_rd
 );
 
     // ============================================
@@ -88,6 +91,11 @@ module cpu (
     wire [31:0] wb_data;
     wire [4:0] wb_rd;
     wire wb_reg_write;
+
+    // Synthesis-visible debug outputs (no datapath changes)
+    assign debug_pc      = if_pc[7:0];
+    assign debug_wb_data = wb_data[7:0];
+    assign debug_wb_rd   = wb_rd;
 
     IDecode IDecode1 (
         .instruction(ifid_instruction),

@@ -32,4 +32,8 @@ module IFetch (
 
     assign instruction = RAM1[pc_register[9:2]];
 
+    initial begin
+        $readmemh("program.hex", RAM1);
+    end
+
 endmodule

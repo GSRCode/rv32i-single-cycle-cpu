@@ -1,8 +1,16 @@
-`timescale 1ns/1ps
 
-module HazardDetectionUnit (input if_valid,
-ex_valid, ex_lw, input [4: 0] ex_rd,
-rs1, rs2, input uses_rs1,
-uses_rs2, output stall);
-assign stall = if_valid && ex_valid && ex_lw && ex_rd != 0 && ((uses_rs1 && rs1 == ex_rd) || (uses_rs2 && rs2 == ex_rd));
+module HazardDetectionUnit (
+    input  wire [4:0] ex_rd,
+    input  wire [4:0] rs1,
+    input  wire [4:0] rs2,
+    input  wire       ex_mem_read,
+
+    output wire       stall
+);
+
+    assign stall =
+        ex_mem_read &&
+        (ex_rd != 5'b00000) &&
+        ((ex_rd == rs1) || (ex_rd == rs2));
+
 endmodule

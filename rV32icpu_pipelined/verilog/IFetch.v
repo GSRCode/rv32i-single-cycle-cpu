@@ -7,6 +7,9 @@ module IFetch (
     input  wire        not_stall,
     input  wire        br_taken,
     input  wire [31:0] br_target,
+    input  wire        imem_write_enable,
+    input  wire [7:0]  imem_write_address,
+    input  wire [31:0] imem_write_data,
     output wire [31:0] pc,
     output wire [31:0] instruction
 );
@@ -31,6 +34,11 @@ module IFetch (
     reg [31:0] RAM1 [0:255];
 
     assign instruction = RAM1[pc_register[9:2]];
+
+    always @(posedge clock) begin
+        if (imem_write_enable)
+            RAM1[imem_write_address] <= imem_write_data;
+    end
 
     initial begin
         $readmemh("program.hex", RAM1);

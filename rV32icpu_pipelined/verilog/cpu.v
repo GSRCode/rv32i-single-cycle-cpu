@@ -2,6 +2,9 @@
 module cpu (
     input  wire clock,
     input  wire reset,
+    input  wire        imem_write_enable,
+    input  wire [7:0]  imem_write_address,
+    input  wire [31:0] imem_write_data,
     output wire stall,
     output wire [7:0] debug_pc,
     output wire [7:0] debug_wb_data,
@@ -28,6 +31,9 @@ module cpu (
         .not_stall(not_stall),
         .br_taken(br_taken),
         .br_target(br_target),
+        .imem_write_enable(imem_write_enable),
+        .imem_write_address(imem_write_address),
+        .imem_write_data(imem_write_data),
         .pc(if_pc),
         .instruction(if_instruction)
     );

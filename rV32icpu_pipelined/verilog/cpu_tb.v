@@ -4,7 +4,15 @@ module cpu_tb;
     reg clock = 0;
     reg reset = 1;
     wire stall;
-    cpu uut (.clock(clock), .reset(reset), .stall(stall));
+    reg imem_write_enable = 0;
+    reg [7:0] imem_write_address = 0;
+    reg [31:0] imem_write_data = 0;
+    cpu uut (
+        .clock(clock), .reset(reset), .stall(stall),
+        .imem_write_enable(imem_write_enable),
+        .imem_write_address(imem_write_address),
+        .imem_write_data(imem_write_data)
+    );
     always #5 clock = ~clock;
 
     integer i, tests = 0, failures = 0, stalls = 0;
@@ -59,6 +67,7 @@ module cpu_tb;
         begin
             @(negedge clock);
             reset = 1;
+            imem_write_enable = 0;
             test_name = name;
             stalls = 0;
             for (i=0; i<256; i=i+1) begin
@@ -66,6 +75,21 @@ module cpu_tb;
                 uut.Mem1.DataRam1[i] = 32'b0;
             end
             $display("\n--- %0s ---", test_name);
+        end
+    endtask
+
+    // Program instruction RAM through the new synthesizable write port.
+    // Call only while reset is asserted, before run_cycles.
+    task write_instruction;
+        input [7:0] address;
+        input [31:0] value;
+        begin
+            @(negedge clock);
+            imem_write_address = address;
+            imem_write_data = value;
+            imem_write_enable = 1;
+            @(negedge clock);
+            imem_write_enable = 0;
         end
     endtask
 
@@ -231,6 +255,14 @@ module cpu_tb;
         run_cycles(19);
         check_reg(5,8); check_reg(2,17);
         check_reg(3,0); check_reg(4,0); check_reg(6,0);
+
+        // 11. Exercise the new instruction-memory programming interface.
+        prepare("Instruction memory write port");
+        write_instruction(8'd0, addi(1,0,12'd9));
+        write_instruction(8'd1, addi(2,0,12'd4));
+        write_instruction(8'd2, add(3,1,2));
+        run_cycles(15);
+        check_reg(1,9); check_reg(2,4); check_reg(3,13);
 
         $display("\n========================================");
         $display("RV32I REGRESSION SUMMARY");

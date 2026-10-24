@@ -8,7 +8,8 @@ module cpu (
     output wire stall,
     output wire [7:0] debug_pc,
     output wire [7:0] debug_wb_data,
-    output wire [4:0] debug_wb_rd
+    output wire [4:0] debug_wb_rd,
+    output wire debug_wb_reg_write
 );
 
     // ============================================
@@ -48,6 +49,8 @@ module cpu (
 
     assign ifid_instruction = ifid_instruction_reg;
     assign ifid_pc = ifid_pc_reg;
+
+    assign debug_wb_reg_write = wb_reg_write;
 
     always @(posedge clock or posedge reset) begin
         if (reset) begin

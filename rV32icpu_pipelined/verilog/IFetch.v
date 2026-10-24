@@ -40,8 +40,17 @@ module IFetch (
             RAM1[imem_write_address] <= imem_write_data;
     end
 
+    integer i;
+
     initial begin
-        $readmemh("program.hex", RAM1);
+        // Initialize all locations to NOP
+        for (i = 0; i < 256; i = i + 1)
+            RAM1[i] = 32'h00000013;
+
+        // Our test program
+        RAM1[0] = 32'h00500093;  // addi x1, x0, 5
+        RAM1[1] = 32'h00300113;  // addi x2, x0, 3
+        RAM1[2] = 32'h002081B3;  // add  x3, x1, x2
     end
 
 endmodule

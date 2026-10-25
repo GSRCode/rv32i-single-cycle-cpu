@@ -8,6 +8,7 @@ module cpu (
     output wire stall,
     output wire [7:0] debug_pc,
     output wire [7:0] debug_wb_data,
+    output wire [31:0] debug_wb_data_full,
     output wire [4:0] debug_wb_rd,
     output wire debug_wb_reg_write
 );
@@ -104,6 +105,7 @@ module cpu (
     // Synthesis-visible debug outputs (no datapath changes)
     assign debug_pc      = if_pc[7:0];
     assign debug_wb_data = wb_data[7:0];
+    assign debug_wb_data_full = wb_data;
     assign debug_wb_rd   = wb_rd;
 
     IDecode IDecode1 (

@@ -530,11 +530,6 @@
     <a name="circuit" val="cpu"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
-    <boardmap boardname="ALCHITRY_AU_IO">
-      <mc/>
-      <mc/>
-      <mc/>
-    </boardmap>
     <comp lib="0" loc="(1390,1040)" name="Constant"/>
     <comp lib="0" loc="(1410,1280)" name="Pin">
       <a name="appearance" val="classic"/>

@@ -5687,6 +5687,7 @@
       <a name="out_width" val="8"/>
       <a name="type" val="zero"/>
     </comp>
+    <comp lib="0" loc="(1090,720)" name="Constant"/>
     <comp lib="0" loc="(3000,1190)" name="Bit Extender">
       <a name="in_width" val="3"/>
       <a name="out_width" val="8"/>
@@ -5722,19 +5723,29 @@
     <comp loc="(1260,360)" name="DCR">
       <a name="label" val="DCR1"/>
     </comp>
-    <comp loc="(1290,980)" name="Core"/>
-    <comp loc="(1330,720)" name="ProgramMemController"/>
+    <comp loc="(1290,980)" name="Core">
+      <a name="label" val="Core0"/>
+    </comp>
+    <comp loc="(1330,720)" name="ProgramMemController">
+      <a name="label" val="ProgMemController1"/>
+    </comp>
     <comp loc="(2130,2210)" name="CoreToFroDMC"/>
     <comp loc="(2140,2680)" name="CoreToFroDMC"/>
     <comp loc="(2150,3130)" name="CoreToFroDMC"/>
     <comp loc="(2150,3640)" name="CoreToFroDMC"/>
-    <comp loc="(3240,990)" name="Core"/>
+    <comp loc="(3240,990)" name="Core">
+      <a name="label" val="Core1"/>
+    </comp>
     <comp loc="(3870,2920)" name="CoreToFroDMC"/>
     <comp loc="(3880,3360)" name="CoreToFroDMC"/>
     <comp loc="(3880,3850)" name="CoreToFroDMC"/>
     <comp loc="(3880,4350)" name="CoreToFroDMC"/>
-    <comp loc="(5010,2170)" name="DataMemController"/>
-    <comp loc="(910,540)" name="Dispatcher"/>
+    <comp loc="(5010,2170)" name="DataMemController">
+      <a name="label" val="DataMemCtrl1"/>
+    </comp>
+    <comp loc="(910,540)" name="Dispatcher">
+      <a name="label" val="Dispatcher1"/>
+    </comp>
     <wire from="(1000,1180)" to="(1010,1180)"/>
     <wire from="(1000,620)" to="(1000,1180)"/>
     <wire from="(1010,1060)" to="(1070,1060)"/>
@@ -5759,6 +5770,7 @@
     <wire from="(1060,690)" to="(1060,760)"/>
     <wire from="(1060,690)" to="(3250,690)"/>
     <wire from="(1060,760)" to="(1110,760)"/>
+    <wire from="(1090,720)" to="(1110,720)"/>
     <wire from="(1260,360)" to="(1290,360)"/>
     <wire from="(1290,1000)" to="(2700,1000)"/>
     <wire from="(1290,1020)" to="(2720,1020)"/>

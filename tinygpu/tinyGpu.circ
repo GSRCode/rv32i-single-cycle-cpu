@@ -3548,7 +3548,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="any_lsu_waiting_op"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(370,180)" name="Pin">
@@ -3718,7 +3717,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d0_m_wr_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1100,2270)" name="Pin">
@@ -3741,7 +3739,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d0_m_rd_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1120,2180)" name="Pin">
@@ -3762,12 +3759,10 @@
     <comp lib="0" loc="(1270,2010)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d1_m_rd_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1270,2040)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d1_m_wr_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1530,1370)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3785,7 +3780,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d1_m_wr_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1740,2210)" name="Pin">
@@ -3800,7 +3794,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d1_m_rd_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1740,2280)" name="Pin">
@@ -3826,12 +3819,10 @@
     <comp lib="0" loc="(1880,2010)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d2_m_rd_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1880,2040)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d2_m_wr_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1910,470)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3861,7 +3852,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d2_m_wr_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(2410,2160)" name="Pin">
@@ -3884,7 +3874,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d2_m_rd_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(2410,2270)" name="Pin">
@@ -3898,12 +3887,10 @@
     <comp lib="0" loc="(2540,2010)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d3_m_rd_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(2540,2040)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d3_m_wr_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(2800,1360)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3915,7 +3902,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d3_m_rd_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(3050,2260)" name="Pin">
@@ -3930,7 +3916,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="d3_m_wr_valid"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(3070,2190)" name="Pin">
@@ -3990,12 +3975,10 @@
     <comp lib="0" loc="(650,2000)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d0_m_rd_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(650,2030)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d0_m_wr_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(980,1380)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4516,12 +4499,10 @@
     <comp lib="0" loc="(1140,720)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_nzp_wr_en"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1140,750)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_pc_mux"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(130,320)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4532,22 +4513,18 @@
     <comp lib="0" loc="(130,360)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_m_rd_en"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(130,400)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_m_wr_en"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(140,440)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_m_rd_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(140,480)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_m_wr_ready"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(1480,340)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4589,7 +4566,6 @@
     <comp lib="0" loc="(440,230)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_r_wr_en"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(440,260)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4624,7 +4600,6 @@
     <comp lib="0" loc="(480,900)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="d_alu_op_mux"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(540,210)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4710,7 +4685,6 @@
     <wire from="(1160,400)" to="(1170,400)"/>
     <wire from="(1160,440)" to="(1160,750)"/>
     <wire from="(1160,440)" to="(1170,440)"/>
-    <wire from="(1170,480)" to="(1170,490)"/>
     <wire from="(130,320)" to="(270,320)"/>
     <wire from="(130,360)" to="(270,360)"/>
     <wire from="(130,400)" to="(270,400)"/>
@@ -4832,7 +4806,6 @@
     <wire from="(660,870)" to="(720,870)"/>
     <wire from="(670,180)" to="(670,310)"/>
     <wire from="(670,310)" to="(700,310)"/>
-    <wire from="(670,60)" to="(670,70)"/>
     <wire from="(680,220)" to="(680,230)"/>
     <wire from="(680,230)" to="(700,230)"/>
     <wire from="(680,350)" to="(680,600)"/>
@@ -4941,7 +4914,6 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="done_op"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1560,1130)" name="Pin">
@@ -5705,6 +5677,8 @@
       <a name="appearance" val="classic"/>
       <a name="label" val="reset"/>
     </comp>
+    <comp lib="0" loc="(4750,2290)" name="Constant"/>
+    <comp lib="0" loc="(4750,2330)" name="Constant"/>
     <comp lib="0" loc="(640,540)" name="Splitter">
       <a name="facing" val="west"/>
     </comp>
@@ -6358,6 +6332,8 @@
     <wire from="(4740,2470)" to="(4790,2470)"/>
     <wire from="(4750,2170)" to="(4750,2180)"/>
     <wire from="(4750,2170)" to="(4790,2170)"/>
+    <wire from="(4750,2290)" to="(4790,2290)"/>
+    <wire from="(4750,2330)" to="(4790,2330)"/>
     <wire from="(4750,2390)" to="(4750,2940)"/>
     <wire from="(4750,2390)" to="(4790,2390)"/>
     <wire from="(4760,2370)" to="(4760,2920)"/>
@@ -6902,6 +6878,7 @@
     <wire from="(1290,430)" to="(1310,430)"/>
     <wire from="(130,530)" to="(160,530)"/>
     <wire from="(130,570)" to="(140,570)"/>
+    <wire from="(1300,450)" to="(1310,450)"/>
     <wire from="(1350,270)" to="(1360,270)"/>
     <wire from="(1360,180)" to="(1360,270)"/>
     <wire from="(1360,270)" to="(1380,270)"/>
@@ -7662,56 +7639,48 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c0_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,2220)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c1_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,2350)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c2_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,2500)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c3_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,2640)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c4_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,2790)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c5_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,2920)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c6_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4480,3070)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c7_rd_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5380,2030)" name="Constant">
@@ -7750,56 +7719,48 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c0_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,2200)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c1_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,2330)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c2_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,2480)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c3_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,2620)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c4_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,2770)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c5_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,2900)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c6_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(5590,3050)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="c7_wr_rdy"/>
-      <a name="radix" val="16"/>
       <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(890,3000)" name="Pin">
